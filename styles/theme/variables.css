@@ -1,0 +1,17 @@
+:root {
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  /* Border radius */
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+
+  /* Shadows */
+  --shadow-sm: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  --shadow-md: 0px 3px 6px rgba(36, 182, 247, 0.2);
+}
