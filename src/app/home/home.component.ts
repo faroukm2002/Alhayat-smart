@@ -7,7 +7,7 @@ import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MainContent, Product, Settings, swiper} from '../interfaces.module';
 import {Globals} from '../servicesApi/globals';
-
+ 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
