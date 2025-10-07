@@ -43,30 +43,33 @@
       </div>
     </div>
   </div>
-  <!--  ------------------------------------------------------------------------------------------------------- -->
+  <!-- Categories Section -->
   <section class="section-two">
-    <div class="container section-two-con" >
-      <div class="main-cat"  *ngFor=" let category of categories;">
-        <h1 class="main-cat-title"   routerLink="/{{lang}}/products/{{category.id}}-{{category.name}}"
-        > {{category.name}}
+    <div class="container section-two-con">
+      <div class="main-cat" *ngFor="let category of categories">
+        <h1 class="main-cat-title" routerLink="/{{lang}}/products/{{category.id}}-{{category.name_en || category.name}}">
+          {{lang === 'ar' ? category.name : (category.name_en || category.name)}}
         </h1>
-        <div class="row" style="margin: 0 20px;" >
+        
+        <div class="row" style="margin: 0 20px;">
           <div class="col-lg-6 parent-cat-div">
             <div class="parent-cat"
-                 routerLink="/{{lang}}/products/{{category.id}}-{{category.name}}"
-                 [ngStyle]="{'background-image': 'url(' + category.image + ')'}" > </div>
+                 routerLink="/{{lang}}/products/{{category.id}}-{{category.name_en || category.name}}"
+                 [ngStyle]="{'background-image': 'url(' + (category.image || 'assets/images/categories/default.jpg') + ')'}">
+            </div>
           </div>
-          <div class="col-lg-6 swiper-div" >
+          
+          <div class="col-lg-6 swiper-div">
             <div class="swiper-container cat-swiper-con">
               <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-cat-slide"
-                     *ngFor=" let subCategory of category.categories;" >
-                  <div class="sub-cat"  [ngStyle]="{'background-image': 'url(' + miniCategory.image + ')'}"
-                       *ngFor=" let miniCategory of subCategory; let i = index;"
-                       routerLink="/{{lang}}/products/{{miniCategory.id}}-{{miniCategory.name}}">
-                      <span class="sub-cat-title" >
-                        {{miniCategory.name}}
-                      </span>
+                <div class="swiper-slide swiper-cat-slide" *ngFor="let subCategory of category.categories">
+                  <div class="sub-cat" 
+                       *ngFor="let miniCategory of subCategory"
+                       [ngStyle]="{'background-image': 'url(' + (miniCategory.image || 'assets/images/categories/default.jpg') + ')'}"
+                       routerLink="/{{lang}}/products/{{miniCategory.id}}-{{miniCategory.name_en || miniCategory.name}}">
+                    <span class="sub-cat-title">
+                      {{lang === 'ar' ? miniCategory.name : (miniCategory.name_en || miniCategory.name)}}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -163,8 +166,8 @@
     <div class="swiper-container swiper-con">
       <div class="swiper-wrapper">
         <div class="swiper-slide swiper-brand-slide"
-             *ngFor="let partnerBrand of brands; let i = index;" [ngStyle]="{'background-image': 'url(' + partnerBrand.logo + ')'}"
-             routerLink="/{{lang}}/products/{{partnerBrand.id}}-{{partnerBrand.name}}"></div>
+             *ngFor="let partner of partners; let i = index;" [ngStyle]="{'background-image': 'url(' + partner.logo + ')'}">
+        </div>
 
       </div>
 

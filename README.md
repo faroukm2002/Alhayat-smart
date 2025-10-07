@@ -1,70 +1,104 @@
-# Angular to Next.js Migration
+# Alhayat Smart E-commerce Platform
 
-This project has been migrated from Angular to Next.js App Router with TypeScript and Bootstrap CSS.
+[![Angular Version](https://img.shields.io/badge/Angular-8.1.0-red.svg)](https://angular.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Project Structure
+An e-commerce platform built with Angular 8, featuring product catalog, shopping cart, user authentication, and order management.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 14.x or 16.x (LTS version recommended)
+- npm 6.x or higher
+- Angular CLI 8.1.0
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/alhayat-smart-angular.git
+   cd alhayat-smart-angular
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   - Copy `.env.example` to `.env`
+   - Update the environment variables in `src/environments/environment.ts`
+
+4. **Run the development server**
+   ```bash
+   npm start
+   ```
+   The app will be available at `http://localhost:4200`
+
+## 🛠 Project Structure
 
 ```
 src/
 ├── app/
-│   ├── globals.css          # Global styles with Bootstrap and custom fonts
-│   ├── layout.tsx           # Root layout with Bootstrap and FontAwesome
-│   └── page.tsx             # Home page component
-├── components/
-│   ├── NavBar.tsx           # Navigation bar component
-│   ├── Footer.tsx           # Footer component
-│   ├── HomeHero.tsx         # Hero section with swiper
-│   ├── CategoriesSection.tsx # Categories display
-│   ├── ArticlesSection.tsx  # Articles/content section
-│   ├── ProductsSection.tsx  # Best selling products
-│   ├── BrandsSection.tsx    # Partners/brands section
-│   └── SmartHomeSection.tsx # Smart home CTA section
-├── types/
-│   └── index.ts             # TypeScript interfaces
-public/
-├── smart-image/             # Images from original project
-└── fonts/                   # Custom fonts
+│   ├── components/     # Reusable components
+│   ├── services/       # Application services
+│   ├── models/         # TypeScript interfaces/models
+│   ├── guards/         # Route guards
+│   └── shared/         # Shared modules and components
+├── assets/            # Static assets
+└── environments/      # Environment configurations
 ```
 
-## Key Changes from Angular
+## 🔧 Configuration
 
-1. **Routing**: Angular Router → Next.js App Router
-2. **Components**: Angular Components → React Components (TSX)
-3. **Styling**: Angular CSS → CSS-in-JS with styled-jsx
-4. **State Management**: Angular Services → React hooks (useState, useEffect)
-5. **Templates**: Angular templates → JSX
-6. **Directives**: *ngFor, *ngIf → map(), conditional rendering
+### Environment Variables
 
-## Features Converted
+Create a `.env` file in the root directory with the following variables:
 
-- ✅ Navigation bar with responsive design
-- ✅ Footer with social links
-- ✅ Home hero section with swiper functionality
-- ✅ Categories section
-- ✅ Articles/content sections
-- ✅ Best selling products
-- ✅ Brands/partners section
-- ✅ Smart home CTA section
-- ✅ Bootstrap CSS styling
-- ✅ Custom fonts (Raleway, Josefin Sans)
-- ✅ Responsive design
-- ✅ FontAwesome icons
+```env
+API_URL=https://cp.alhayatsmart.com/api/
+FB_APP_ID=your_facebook_app_id
+GOOGLE_ANALYTICS_ID=your_ga_id
+```
 
-## Next Steps
+## 🚀 Deployment
 
-1. Add actual images to `public/smart-image/`
-2. Add font files to `public/fonts/`
-3. Implement API calls to replace mock data
-4. Add remaining pages (products, smart-home, etc.)
-5. Implement authentication
-6. Add shopping cart functionality
-7. Add internationalization (i18n) if needed
-
-## Running the Project
+### Production Build
 
 ```bash
-npm install
-npm run dev
+ng build --prod
 ```
 
-The application will be available at `http://localhost:3000`
+The build artifacts will be stored in the `dist/` directory.
+
+### Docker Support
+
+Build the Docker image:
+```bash
+docker build -t alhayat-smart .
+```
+
+Run the container:
+```bash
+docker run -p 80:80 alhayat-smart
+```
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Angular](https://angular.io/)
+- [Bootstrap](https://getbootstrap.com/)
+- [ngx-spinner](https://github.com/Napster2210/ngx-spinner)
+- And all other open-source libraries used in this project

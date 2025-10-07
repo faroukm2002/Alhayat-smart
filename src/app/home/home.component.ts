@@ -7,7 +7,7 @@ import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MainContent, Product, Settings, swiper} from '../interfaces.module';
 import {Globals} from '../servicesApi/globals';
- 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   postHome;
   rtl: string;
   brands: any [];
+  partners: any[];
   bestSellingProducts: Product[];
   swiper: swiper[];
   settings = new Settings();
@@ -76,15 +77,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     );
 
-    this.globals.getCategories().subscribe(categories => {
-      this.categories = JSON.parse(JSON.stringify(categories));
+    this.apiCalledService.getPartners().subscribe(
+      data => {
+        this.partners = data;
+      }
+    );
+
+    // Get categories from API service
+    this.apiCalledService.getCategories(this.lang).subscribe(categories => {
+      this.categories = categories;
       if (this.categories) {
- this.categories.forEach((category) => {
-    category.categories = this.chunkArray(category.categories, 4);
-   });
- categories = this.categories;
- console.log(categories);
- }
+        // Process categories for display
+        this.categories.forEach((category) => {
+          if (category.categories && category.categories.length > 0) {
+            category.categories = this.chunkArray(category.categories, 4);
+          }
+        });
+        console.log('Loaded categories:', this.categories);
+      }
+    }, error => {
+      console.error('Error loading categories:', error);
     });
   }
   chunkArray = (myArray, chunkSize) => {

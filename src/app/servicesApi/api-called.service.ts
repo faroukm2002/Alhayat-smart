@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
+import { MOCK_HOME_DATA, MOCK_CITIES_DATA, MOCK_CATEGORIES_DATA, MOCK_PRODUCTS_DATA, MOCK_PRODUCT_DETAILS_DATA, MOCK_BRANDS_DATA, MOCK_BASKET_DATA, MOCK_SETTINGS_DATA, MOCK_ABOUT_US_DATA, MOCK_PARTNERS_DATA, MOCK_SUCCESS_RESPONSE, MOCK_HISTORY_DATA } from './mock-data';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 const baseUrl = 'https://cp.alhayatsmart.com/api/';
@@ -10,128 +12,115 @@ const baseUrl = 'https://cp.alhayatsmart.com/api/';
 export class ApiCalledService {
   constructor(private http: Http, private spinner: NgxSpinnerService) {
   }
-  getHome(lang: any) {
+  getHome(lang: any): Observable<any> {
     this.spinner.show();
-    return this.http.get(baseUrl + 'homePage?lang=' + lang)
-      .map(res => res.json());
+    // Simulate an API call
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_HOME_DATA);
   }
 
-  getCities(lang: any) {
+  getCities(lang: any): Observable<any> {
     this.spinner.show();
-    return this.http.get(baseUrl + 'getCities?lang=' + lang)
-      .map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_CITIES_DATA);
   }
 
-  getCategories(lang: any) {
+  getCategories(lang: any): Observable<any> {
     this.spinner.show();
-    return this.http.get(baseUrl + 'getCategories?lang=' + lang)
-      .map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_CATEGORIES_DATA);
   }
 
-  getSettings() {
+  getSettings(): Observable<any> {
     this.spinner.show();
-    return this.http.get(baseUrl + 'setting')
-      .map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_SETTINGS_DATA);
   }
 
-  changeProfileImage(selectedFile: any, api_token: string) {
+  changeProfileImage(selectedFile: any, api_token: string): Observable<any> {
     this.spinner.show();
-    const uploadData = new FormData();
-    uploadData.append('image', selectedFile, selectedFile.name);
-    uploadData.append('api_token', api_token);
-    return this.http.post(baseUrl + 'changeUserImage', uploadData);
+    setTimeout(() => this.spinner.hide(), 500);
+    // In a real mock, you might want to handle the file, but for now, we'll just return success.
+    return of(MOCK_SUCCESS_RESPONSE);
   }
 
-  getProducts(lang: any, categoryId: any, sortBy: any, search: any, priceRange: any, brands: string) {
-    return this.http.get(baseUrl + 'getProducts?lang=' + lang + '&category=' + categoryId + '&sort=' + sortBy + '&search=' + search + '&price=' + priceRange.lower + '-' + priceRange.upper + '&brands=' + brands)
-      .map(res => res.json());
+  getProducts(lang: any, categoryId: any, sortBy: any, search: any, priceRange: any, brands: string): Observable<any> {
+    return of(MOCK_PRODUCTS_DATA);
   }
 
-  nextProducts(url: string, lang: any, categoryId: any, sortBy: any, search: any, priceRange: any, brands: string) {
-    return this.http.get(url + '&lang=' + lang + '&category=' + categoryId + '&sort=' + sortBy + '&search=' + search + '&price=' + priceRange.lower + '-' + priceRange.upper + '&brands=' + brands)
-      .map(res => res.json());
+  nextProducts(url: string, lang: any, categoryId: any, sortBy: any, search: any, priceRange: any, brands: string): Observable<any> {
+    // In a real scenario, you might have pagination logic here.
+    // For now, returning an empty set to signify no more products.
+    return of({ data: [], links: { next: null } });
   }
 
-  getBrands(lang: any, categoryId: any) {
-    const obj = {
-      lang,
-      categoryId
-    };
-    return this.http.post(baseUrl + `getBrands?lang=${lang}`, obj).map(res => res.json());
+  getBrands(lang: any, categoryId: any): Observable<any> {
+    return of(MOCK_BRANDS_DATA);
   }
 
-  getProduct(lang: any, productId: any) {
+  getProduct(lang: any, productId: any): Observable<any> {
     this.spinner.show();
-    const obj = {
-      lang,
-      productId
-    };
-    return this.http.post(baseUrl + 'getProductDetails', obj).map(res => res.json());
-
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_PRODUCT_DETAILS_DATA);
   }
 
   // tslint:disable-next-line:variable-name
-  addToBasket(basket: any, api_token: any) {
-    const obj = {
-      product_id: basket.id,
-      quantity: basket.quantity,
-      api_token
-    };
+  addToBasket(basket: any, api_token: any): Observable<any> {
     this.spinner.show();
-    return this.http.post(baseUrl + 'addToBasket', obj).map(res => res.json());
-
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_SUCCESS_RESPONSE);
   }
 
   // tslint:disable-next-line:variable-name
-  getBasket(lang: any, api_token: any) {
+  getBasket(lang: any, api_token: any): Observable<any> {
     this.spinner.show();
-    const obj = {
-      lang,
-      api_token
-    };
-    return this.http.post(baseUrl + 'basket', obj).map(res => res.json());
-
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_BASKET_DATA);
   }
 
-  changeQuantity(product_id: number, api_token: any, quantity: number) {
+  changeQuantity(product_id: number, api_token: any, quantity: number): Observable<any> {
     this.spinner.show();
-    const obj = {
-      product_id,
-      api_token,
-      quantity
-    };
-    return this.http.post(baseUrl + 'changeQuantity', obj).map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_SUCCESS_RESPONSE);
   }
 
-  deleteFromBasket(product_id: number, api_token: any) {
+  deleteFromBasket(product_id: number, api_token: any): Observable<any> {
     this.spinner.show();
-    const obj = {
-      product_id,
-      api_token
-    };
-    return this.http.post(baseUrl + 'deleteFromBasket', obj).map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_SUCCESS_RESPONSE);
   }
 
-  checkOut(data: any) {
+  checkOut(data: any): Observable<any> {
     this.spinner.show();
-    return this.http.post(baseUrl + 'checkOut', data);
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_SUCCESS_RESPONSE);
   }
 
-  startQoutation(data: any) {
+  startQoutation(data: any): Observable<any> {
     this.spinner.show();
-    return this.http.post(baseUrl + 'StartQoutation', data).map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of({ ...MOCK_SUCCESS_RESPONSE, quotation_id: 12345 });
   }
-  qoutationFinalStep(data: any) {
+  qoutationFinalStep(data: any): Observable<any> {
     this.spinner.show();
-    return this.http.post(baseUrl + 'finalStep', data).map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_SUCCESS_RESPONSE);
   }
 
-  getAbout(lang: string) {
+  getAbout(lang: string): Observable<any> {
     this.spinner.show();
-    return this.http.get(baseUrl + `aboutUs?lang=${lang}`).map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_ABOUT_US_DATA);
   }
-  getPartners() {
+  getPartners(): Observable<any> {
     this.spinner.show();
-    return this.http.get(baseUrl + 'getPartners').map(res => res.json());
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_PARTNERS_DATA);
+  }
+
+  getHistory(lang: any, api_token: any): Observable<any> {
+    this.spinner.show();
+    setTimeout(() => this.spinner.hide(), 500);
+    return of(MOCK_HISTORY_DATA);
   }
 }

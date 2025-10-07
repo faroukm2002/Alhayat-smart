@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {User, Basket} from '../interfaces.module';
+import { MOCK_CATEGORIES_DATA } from './mock-data';
 
 @Injectable()
 export class Globals {
   private lang: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
   private user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  private categories: BehaviorSubject<object> = new BehaviorSubject<object>(null);
+  private categories: BehaviorSubject<object> = new BehaviorSubject<object>(MOCK_CATEGORIES_DATA);
   private basket: BehaviorSubject<Basket> = new BehaviorSubject<Basket>(null);
-
 
   public setLang(lang) {
     this.lang.next(lang);

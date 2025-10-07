@@ -12,15 +12,6 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-// import { LoginComponent } from './login/login.component';
-// import { SignUpComponent } from './sign-up/sign-up.component';
-// import { ContactUsComponent } from './contact-us/contact-us.component';
-// import { AboutUsComponent } from './about-us/about-us.component';
-// import { HistoryComponent } from './history/history.component';
-// import { ProfileComponent } from './profile/profile.component';
-// import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-// import { ProductComponent } from './product/product.component';
-// import { SolutionComponent } from './solution/solution.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -52,15 +43,7 @@ const providers = {
     NavBarComponent,
     FooterComponent,
     HomeComponent,
-    // LoginComponent,
-    // SignUpComponent,
-    // ContactUsComponent,
-    // AboutUsComponent,
-    // HistoryComponent,
-    // ProfileComponent,
-    // ShoppingCartComponent,
-    // ProductComponent,
-    // SolutionComponent,
+  
 
 ],
   imports: [
